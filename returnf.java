@@ -1,5 +1,5 @@
 
-package dvd;
+																																																																																																																																																														package dvd;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,18 +15,15 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 
-public class lend extends JFrame{
-	public lend(){
+public class returnf extends JFrame{
+	public returnf(){
 		JFrame frm = new JFrame(); 
-		frm.setTitle("欢迎租借小店光碟");
+		frm.setTitle("欢迎归还小店的光碟");
 		frm.setLayout(null);
 		frm.setBounds(600,250, 450, 300);
 		frm.setVisible(true);
 		
-		JLabel label_delete = new JLabel();
-		label_delete.setText("剁手！：");
-		label_delete.setBounds(20, 65, 85, 30);
-		frm.getContentPane().add(label_delete);
+		
 		
 		final JLabel label_Dtrue = new JLabel();
 		label_Dtrue.setBounds(75, 150, 310, 30);
@@ -37,13 +34,13 @@ public class lend extends JFrame{
 		frm.getContentPane().add(label_Ptrue);
 		
 		final JTextField text_read = new JTextField();
-		text_read.setText("请输入要出租的碟片的序号");
+		text_read.setText("请输入要归还的碟片的序号");
 		text_read.setHorizontalAlignment(JTextField.CENTER);
 		text_read.setBounds(75, 65, 310, 30);
 		frm.getContentPane().add(text_read);
 		
 		final JTextField text_read1 = new JTextField();
-		text_read1.setText("请输入要出租的碟片的数量");
+		text_read1.setText("请输入要归还的碟片的数量");
 		text_read1.setHorizontalAlignment(JTextField.CENTER);
 		text_read1.setBounds(75, 105, 310, 30);
 		frm.getContentPane().add(text_read1);
@@ -54,7 +51,7 @@ public class lend extends JFrame{
 		kButtonHandler kHandler = new kButtonHandler();
 		k.addActionListener(kHandler);
 		
-		JButton n = new JButton("买！");
+		JButton n = new JButton("我还！");
 		n.setBounds(165, 220, 70, 25);
 		frm.getContentPane().add(n);
 		n.addActionListener(new ActionListener(){
@@ -76,33 +73,21 @@ public class lend extends JFrame{
 					  String zifu = sc.nextLine();
 					     String[] gg=zifu.split(" ");
 					     int caozuo=Integer.parseInt(gg[2]);
-					     caozuo=caozuo-number1;
+					     caozuo=caozuo+number1;
 					     System.out.println("fuck");
-						if (caozuo>=0){ String gengxin=gg[0]+" "+gg[1]+" "+caozuo+" "+gg[3];
-					     
+					   
+					     String gengxin=gg[0]+" "+gg[1]+" "+caozuo+" "+gg[3];
 					     
 					     File f = new File(""+b);
 					     FileWriter fw =  new FileWriter(f);
 					     fw.write(""+gengxin);
 					     fw.close();
+						
+						if (number1>=0){
 								
-								label_Dtrue.setText("刷卡成功");
+								label_Dtrue.setText("归还成功，谢谢惠顾！");
 							}
-							else {label_Dtrue.setText("不够啊爷，请重新输入");
-							caozuo=caozuo+number1;
-							String numbernew = text_read1.getText();
-							 number1=Integer.parseInt(numbernew);
-							 String gengxin=gg[0]+" "+gg[1]+" "+caozuo+" "+gg[3];
-						     
-						     
-						     File f = new File(""+b);
-						     FileWriter fw =  new FileWriter(f);
-						     fw.write(""+gengxin);
-						     fw.close();}
-					   
-					    
-						
-						
+							else label_Dtrue.setText("失败");
 					     
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
@@ -152,7 +137,7 @@ public class lend extends JFrame{
 						}
 					}
 				}
-				label_Ptrue.setText("谢谢爷！");
+				label_Ptrue.setText("打赏成功，谢谢爷");
 			}
 		});
 	}

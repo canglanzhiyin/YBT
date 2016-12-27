@@ -1,30 +1,24 @@
-
 package dvd;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 
-public class lend extends JFrame{
-	public lend(){
+public class Delete extends JFrame{
+	public Delete(){
 		JFrame frm = new JFrame(); 
-		frm.setTitle("欢迎租借小店光碟");
+		frm.setTitle("删除");
 		frm.setLayout(null);
 		frm.setBounds(600,250, 450, 300);
 		frm.setVisible(true);
 		
 		JLabel label_delete = new JLabel();
-		label_delete.setText("剁手！：");
+		label_delete.setText("文件名：");
 		label_delete.setBounds(20, 65, 85, 30);
 		frm.getContentPane().add(label_delete);
 		
@@ -37,16 +31,10 @@ public class lend extends JFrame{
 		frm.getContentPane().add(label_Ptrue);
 		
 		final JTextField text_read = new JTextField();
-		text_read.setText("请输入要出租的碟片的序号");
+		text_read.setText("请输入要删除的文件名");
 		text_read.setHorizontalAlignment(JTextField.CENTER);
 		text_read.setBounds(75, 65, 310, 30);
 		frm.getContentPane().add(text_read);
-		
-		final JTextField text_read1 = new JTextField();
-		text_read1.setText("请输入要出租的碟片的数量");
-		text_read1.setHorizontalAlignment(JTextField.CENTER);
-		text_read1.setBounds(75, 105, 310, 30);
-		frm.getContentPane().add(text_read1);
 		
 		JButton k = new JButton("返回");
 		k.setBounds(335, 220, 70, 25);
@@ -54,69 +42,22 @@ public class lend extends JFrame{
 		kButtonHandler kHandler = new kButtonHandler();
 		k.addActionListener(kHandler);
 		
-		JButton n = new JButton("买！");
+		JButton n = new JButton("删除");
 		n.setBounds(165, 220, 70, 25);
 		frm.getContentPane().add(n);
 		n.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				String name = text_read.getText();
-				String number = text_read1.getText();
-				int number1=Integer.parseInt(number);
 				File file_d = new File("d:\\dvd\\Z1512480230\\" + name + ".txt");
-				
-				
-				
-				String a="d:\\dvd\\Z1512480230\\";
-			     String c=".txt";
-			     String b=a+name+c;
-			     
-				Scanner sc;
-				try {
-					sc = new Scanner(new File(""+b));
-					  String zifu = sc.nextLine();
-					     String[] gg=zifu.split(" ");
-					     int caozuo=Integer.parseInt(gg[2]);
-					     caozuo=caozuo-number1;
-					     System.out.println("fuck");
-						if (caozuo>=0){ String gengxin=gg[0]+" "+gg[1]+" "+caozuo+" "+gg[3];
-					     
-					     
-					     File f = new File(""+b);
-					     FileWriter fw =  new FileWriter(f);
-					     fw.write(""+gengxin);
-					     fw.close();
-								
-								label_Dtrue.setText("刷卡成功");
-							}
-							else {label_Dtrue.setText("不够啊爷，请重新输入");
-							caozuo=caozuo+number1;
-							String numbernew = text_read1.getText();
-							 number1=Integer.parseInt(numbernew);
-							 String gengxin=gg[0]+" "+gg[1]+" "+caozuo+" "+gg[3];
-						     
-						     
-						     File f = new File(""+b);
-						     FileWriter fw =  new FileWriter(f);
-						     fw.write(""+gengxin);
-						     fw.close();}
-					   
-					    
-						
-						
-					     
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}		
-				
-
+					if (file_d.isFile()&&file_d.exists()){
+						file_d.delete();
+						label_Dtrue.setText("删除成功！");
+					}
+					else label_Dtrue.setText("未找到相应文件！");
 			}
 		});
 		
-		
-		JButton p = new JButton("打赏");
+		JButton p = new JButton("排序");
 		p.setBounds(250, 220, 70, 25);
 		frm.getContentPane().add(p);
 		p.addActionListener(new ActionListener(){
@@ -152,7 +93,7 @@ public class lend extends JFrame{
 						}
 					}
 				}
-				label_Ptrue.setText("谢谢爷！");
+				label_Ptrue.setText("重新排序完成！");
 			}
 		});
 	}
@@ -166,4 +107,9 @@ public class lend extends JFrame{
 	}
 	
 }
+
+
+
+
+
 
